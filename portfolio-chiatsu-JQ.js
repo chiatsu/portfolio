@@ -4,7 +4,7 @@ $(function(){
   window.onload = function() {
     setTimeout(function(){
       document.addEventListener('touchmove',handle,{passive: true});
-      document.addEventListener('mousewheel',handle,{passive: true});
+      document.addEventListener('wheel',handle,{passive: true});
       document.addEventListener('scroll',handle,{passive: true});
       window.addEventListener( "wheel",handle);
     },7000)
