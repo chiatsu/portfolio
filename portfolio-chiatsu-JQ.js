@@ -580,7 +580,7 @@ $(function(){
     let ctx = canvas.getContext('2d');
     canvas.width = screen.width * 2;
     canvas.height = screen.height * 2;
-    let density = 50;
+    let density = 5;
     let lines = [];
     let colors = ['springgreen','cyan','lime'];
   
@@ -617,7 +617,7 @@ $(function(){
     let timerId = setInterval(function(){
       cnt++
       lineDraw();
-      if(cnt===500){
+      if(cnt===1000){
         clearInterval(timerId);  
         once = 1;
       }
