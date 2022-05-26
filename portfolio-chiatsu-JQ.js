@@ -3,10 +3,9 @@ $(function(){
 
   window.onload = function() {
     setTimeout(function(){
-      document.addEventListener('touchmove',handle,{passive: true});
-      document.addEventListener('wheel',handle,{passive: true});
-      document.addEventListener('scroll',handle,{passive: true});
-      window.addEventListener( "wheel",handle);
+      window.addEventListener('touchmove',handle,{passive: false});
+      window.addEventListener('wheel',handle,{passive: false});
+      window.addEventListener('scroll',handle,{passive: false});
     },7000)
     for(let i = 0;i < 4;i++){
       splash(i * 100)
