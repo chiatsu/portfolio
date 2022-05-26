@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link rel="stylesheet" href="portfolio-chiatsu.css">
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="loadPage">
+            <div id="loadPageContainer">
+                <div class="left"></div>
+                <div class="right"></div>
+                <div class="loadPageWhite"></div>
+                <canvas id="centerLine"></canvas>
+                <div class="loadTextContainer">
+                    <div class="loadTextBlock1 loadTextBlock">
+                        <h1 id="splashLoadText1" class="loadText1 loadText">Welcome&nbsp;to</h1>
+                        <h1 id="splashLoadText2" class="loadText2 loadText">My&nbsp;Portfolio</h1>
+                    </div>
+                    <div class="loadTextBlock2 loadTextBlock">
+                        <h1 id="splashLoadText1" class="loadText1 loadText">This&nbsp;is</h1>
+                        <h1 id="splashLoadText2" class="loadText2 loadText">My&nbsp;Atelier</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="all">
+            <div id="particleContainer">
+                <canvas id="particle"></canvas>
+            </div>
+            <div class="wavesContainer">
+                <div class="waves">
+                    <canvas id="wave1" class="wave"></canvas>
+                    <canvas id='wave2' class="wave"></canvas>
+                    <canvas id='wave3' class="wave"></canvas>
+                </div>
+            </div>
+            <div class="header">
+                <div class="headerContainer">
+                    <div class="headerLogo">
+                        <img class="logo" src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/logo/図1darkgray.png">
+                        <p class="logoName">Chiatsu Ikeda</p>
+                    </div>
+                    <div class="contentList">
+                        <ul>
+                            <li><a href="#0" id="contentList0">Top</a><p class="mark mark0"></p></li>
+                            <li><a href="#1" id="contentList1">About</a><p class="mark mark1"></p></li>
+                            <li><a href="#2" id="contentList2">Atelier</a><p class="mark mark2"></p></li>
+                            <li><a href="#3" id="contentList3">Last</a><p class="mark mark3"></p></li>
+                            <li class="miniList">Contact</li>
+                        </ul>
+                    </div>
+                    <div class="contentListMiniScreen">
+                        <div class="hamburgerMenu">
+                            <div class="hamburgers">
+                                <p class="hamburger"></p>
+                            </div>
+                            <div class="crosses">
+                                <div class="crossContainer">
+                                    <p class="cross"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rightBlankMini">
+                            <div class="contactMini">
+                                <p>E-MAIL</p>
+                                <p>TWITTER</p>
+                                <p>INSTAGRAM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scrollContainer">
+                <div id="scrollButton">
+                    <p>NEXT</p>
+                    <p>click</p>
+                </div>
+                <div id='scrollButtonRipple'></div>
+            </div>
+            <div class="rightBlank">
+                <div class="contact">
+                    <p>E-MAIL</p>
+                    <p>TWITTER</p>
+                    <p>INSTAGRAM</p>
+                </div>
+            </div>
+            <div class="white"></div>
+            <div class="main">
+                <div class="content1 container">
+                    <div class="centerLogoContainer">
+                        <div class="centerLogo">
+                            <h1 class="splash0" id="splash0">CHIATSU&nbsp;</h1><!--全部同じIDにしてスプラッシュテキストのアニメーションを有効にする。多分同じIDにしたほうがコードが短くなる。変数はvarで定義すれば使い回し可能、スプラッシュテキストで散らした文字は最後に同じ場所に戻るようにコーディング。画面遷移で消す画面はスプラッシュ、出現させる画面は普通のフェードインで十分だと思う。-->
+                            <h1 class="splash0" id="splash1">IKEDA</h1>
+                            <h3 class="splash0" id="splash2">My&nbsp;Atelier</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="content2 container">
+                    <div id="circleBox">
+                        <canvas id='circle'></canvas>
+                        <div class="circleText">
+                            <h3 class="splash100" id="splash100">My&nbsp;Profile</h3>
+                            <div class="profileList">
+                                <div class="profileListContainer">
+                                    <h4 class="splash100" id="splash101">Name:</h4>
+                                    <p class="splash100" id="splash102">Chiatsu&nbsp;Ikeda</p>
+                                </div>
+                                <div class="profileListContainer">
+                                    <h4 class="splash100" id="splash103">From:</h4>
+                                    <p class="splash100" id="splash104">Tokyo</p>
+                                </div>
+                                <div class="profileListContainer">
+                                    <h4 class="splash100" id="splash105">Birthday:</h4>
+                                    <p class="splash100" id="splash106">5/30/2000</p>
+                                </div>
+                                <div class="profileListContainer">
+                                    <h4 class="splash100" id="splash107">Occupation:</h4>
+                                    <p class="splash100" id="splash108">university&nbsp;student</p>
+                                </div>
+                                <div class="profileListContainer">
+                                    <h4 class="splash100" id="splash109">Skills:</h4>
+                                    <p class="splash100" id="splash110">HTML,&nbsp;CSS,&nbsp;canvas,&nbsp;JavaScript,&nbsp;jQuery,</p>
+                                    <p class="splash100" id="splash111">Python(少し)</p>
+                                </div>
+                                <h5 class="splash100" id="splash112">日本大学商学部に通う大学3年生です。独学でweb制作の勉強中です。高校卒業までラグビーをやっていたので割と体育会系です。選抜などにも選ばれたりしていました（過去の栄光ってやつです笑笑）。怪我の影響で引退しましたが、今は新たな目標を持って色々勉強中です。</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="textFlow topTextFlow">
+                        <canvas id="flowText"></canvas>
+                    </div>
+                </div>
+                <div class="content3 container">
+                    <canvas id="lineDrow"></canvas>
+                    <div class="atelierContainer">
+                        <div class="previousButton content3ButtonContainer">
+                            <p class="prevContent3Button">prev</p>
+                            <div class="prevArrow">
+                                <div class="prevArrow2"></div>
+                            </div>
+                        </div>
+                        <div class="nextButton content3ButtonContainer">
+                            <p class="nextContent3Button">next</p>
+                            <div class="nextArrow">
+                                <div class="nextArrow2"></div>
+                            </div>
+                        </div>
+                        <div class="atelierRotateContainer">
+                            <div class="atelier">
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                                <div class="work">
+                                    <img src="/Users/ikedatomoatsu/Documents/プログラミング/プログラム/portfolio-chiatsu/atelier/nZlSaN7WYcQURwT1651178989_1651179022.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content4 container">
+                    <div class="lastText">
+                        <h1 class="splash300" id="splash300">Thank&nbsp;you</h1>
+                        <h1 class="splash300" id="splash301">for</h1>
+                        <h1 class="splash300" id="splash302">coming&nbsp;My&nbsp;Atelier</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        
+
+
+
+
+
+
+    <script src="portfolio-chiatsu-BG.js"></script>
+    <script src="portfolio-chiatsu-JQ.js"></script>
+    </body>
+</html>
