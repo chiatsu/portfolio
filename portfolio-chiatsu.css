@@ -319,6 +319,7 @@
     z-index: 100;
     font-weight:bolder;
     pointer-events: auto;
+    cursor: pointer;
 }
 
 #scrollButton p:nth-child(2){
@@ -937,6 +938,9 @@ span{
         transform:rotate(-150deg);
         transition:1s;
     }
+    
+    #lineDraw{
+        height:60%;
 }
 
 
