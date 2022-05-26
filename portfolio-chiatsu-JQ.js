@@ -5,6 +5,7 @@ $(function(){
     setTimeout(function(){
       document.addEventListener('touchmove',handle,{passive: false});
       document.addEventListener('mousewheel',handle,{passive: false});
+      document.addEventListener('scroll',handle,{passive: false});
       window.addEventListener( "wheel",handle);
     },7000)
     for(let i = 0;i < 4;i++){
