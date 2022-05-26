@@ -944,7 +944,14 @@ span{
     
     #lineDraw{
         height:60%;
+    }
+    
+    .scrollContainer{
+        bottom:15%;
+    }
 }
+    
+
 
 
 
