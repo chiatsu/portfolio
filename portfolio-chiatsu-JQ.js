@@ -3,9 +3,9 @@ $(function(){
 
   window.onload = function() {
     setTimeout(function(){
-      document.addEventListener('touchmove',handle,{passive: false});
-      document.addEventListener('mousewheel',handle,{passive: false});
-      document.addEventListener('scroll',handle,{passive: false});
+      document.addEventListener('touchmove',handle,{passive: true});
+      document.addEventListener('mousewheel',handle,{passive: true});
+      document.addEventListener('scroll',handle,{passive: true});
       window.addEventListener( "wheel",handle);
     },7000)
     for(let i = 0;i < 4;i++){
