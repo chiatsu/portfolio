@@ -395,8 +395,8 @@ $(function(){
       window.requestAnimationFrame = requestAnimationFrame;
     })();
     $('#loadPageContaine').css('width',screen.width).css('height',screen.height);
-    $('.left').css('border-top',window.innerHeight + 1 + 'px' + ' white solid').css('border-right',window.innerWidth + 'px' + ' transparent solid')
-    $('.right').css('border-bottom',window.innerHeight + 1 + 'px' + ' white solid').css('border-left',window.innerWidth + 'px' + ' transparent solid')
+    $('.left').css('border-top',window.innerHeight + 100 + 'px' + ' white solid').css('border-right',window.innerWidth + 'px' + ' transparent solid')
+    $('.right').css('border-bottom',window.innerHeight + 100 + 'px' + ' white solid').css('border-left',window.innerWidth + 'px' + ' transparent solid')
 
     function centerLineCanvas(){
       let canvasLine = document.getElementById('centerLine');
