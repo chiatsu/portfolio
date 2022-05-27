@@ -1,4 +1,5 @@
 $(function(){
+  console.log('yes')
 
   var pageNumber = 0;
   let once = 0;
@@ -16,6 +17,7 @@ $(function(){
     window.addEventListener('wheel', handleTouchMove, { passive: false });
     setTimeout(() => {
       window.removeEventListener('wheel', handleTouchMove, { passive: false });
+      console.log('wheel Yes')
     }, 7000);
     for(let i = 0;i < 4;i++){
       splash(i * 100)
@@ -26,6 +28,7 @@ $(function(){
   window.onscroll = function(){
     var scrollCounter = document.documentElement.scrollTop || document.body.scrollTop;
     var posA = $(this).scrollTop();
+    console.log('onscroll')
 
 
     if(scrollControlNumber == 'possible'){
