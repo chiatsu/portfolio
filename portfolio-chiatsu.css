@@ -23,9 +23,10 @@
 .scrollScreen{
     position: absolute;
     display: inline-block;
-    z-index: 100;
+    z-index: -100;
     width:1px;
     height:1000vh;
+    background-color:transparent;
     left:0;
 }
 
