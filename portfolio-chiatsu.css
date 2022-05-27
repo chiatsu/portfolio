@@ -5,13 +5,28 @@
     box-sizing: border-box;
     font-family: 'Baskerville';
     font-weight: lighter;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
 }
+
+*::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+    display:none;
+  }
 
 .all{
     width:100vw;
     height:100vh;
     overflow: hidden;
     position: relative;
+}
+
+.scrollScreen{
+    position: absolute;
+    display: inline-block;
+    z-index: 100;
+    width:1px;
+    height:1000vh;
+    left:0;
 }
 
 
@@ -39,6 +54,7 @@
     background-color: white;
     z-index: 3;
     position: absolute;
+    transition:1s;
 }
 
 #loadPageContainer{
@@ -296,7 +312,7 @@
 .scrollContainer{
     width:100vw;
     height:60px;
-    position: absolute;
+    position: fixed;
     bottom:5%;
     text-align: center;
     z-index: 100;
@@ -941,17 +957,15 @@ span{
         transition:1s;
         cursor:pointer;
     }
-    
-    #lineDraw{
-        height:60%;
+
+    #lineDrow{
+        width: 100vmin;
+        height: 100vmin;
     }
-    
+
     .scrollContainer{
         bottom:15%;
     }
+
 }
-    
-
-
-
 
