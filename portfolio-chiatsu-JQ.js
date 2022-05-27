@@ -1,21 +1,59 @@
 $(function(){
 
+  var pageNumber = 0;
+  let once = 0;
+  var posB = $(window).scrollTop();
+  let scrollControlNumber = 'inpossible';
+
+  setTimeout(() => {
+    scrollControlNumber = 'possible';
+  }, 7000);
 
   window.onload = function() {
-    setTimeout(function(){
-      window.addEventListener('touchmove',handle,{passive: false});
-      window.addEventListener('wheel',handle,{passive: false});
-      window.addEventListener('scroll',handle,{passive: false});
-    },7000)
+    function handleTouchMove(event) {
+      event.preventDefault();
+    }
+    window.addEventListener('wheel', handleTouchMove, { passive: false });
+    setTimeout(() => {
+      window.removeEventListener('wheel', handleTouchMove, { passive: false });
+    }, 7000);
     for(let i = 0;i < 4;i++){
       splash(i * 100)
     }
   }
 
+
+  window.onscroll = function(){
+    var scrollCounter = document.documentElement.scrollTop || document.body.scrollTop;
+    var posA = $(this).scrollTop();
+
+
+    if(scrollControlNumber == 'possible'){
+      if(posA < posB){
+        pageControlButton(-1);
+        scrollControlNumber = 'inpossible';
+        setTimeout(function(){scrollControlNumber = 'possible'},3000);
+      }else{
+        pageControlButton(1);
+        scrollControlNumber = 'inpossible';
+        setTimeout(function(){scrollControlNumber = 'possible'},3000);
+      }
+    }
+
+    posB = posA;
+
+    if(scrollCounter == window.innerHeight * 9){
+      window.scrollTo(0,1);
+    }else if(scrollCounter == 0){
+      window.scrollTo(0,(window.innerHeight * 10) -1 );
+    };
+
+  }
+
   //scroll&ripple
   $('#scrollButton').hover(
     function(){
-      if($(window).width() > 700){
+      if($(window).width() > 800){
         $(this).css('border','1px solid cyan')
         $(this).css('color','cyan')
         $(this).css('background-color','gray')
@@ -24,7 +62,7 @@ $(function(){
       };
     },
     function(){
-      if($(window).width() > 700){
+      if($(window).width() > 800){
         $(this).css('border','1px solid black')
         $(this).css('color','black')
         $(this).css('background-color','transparent')
@@ -63,8 +101,6 @@ $(function(){
     }
   );
 
-  var pageNumber = 0;
-  let once = 0;
 
 
   function leftListMark(nowPage){
@@ -99,7 +135,7 @@ $(function(){
             };
           }
           setTimeout(contentFadeInList,1000);
-          if($(window).width() < 700){
+          if($(window).width() < 800){
             $('.crossContainer').css('transform','rotateY(90deg)');
             $('.contentList').css('visibility','hidden').css('transform','rotate(150deg)').css('opacity','0');
             $('.contentList li').css('transform','rotate(-150deg)')
@@ -150,16 +186,21 @@ $(function(){
     $('.white').css('opacity','0').css('visibility','hidden').css('opacity','0');
   };
 
-
   
 
   var pageControlButton = function(vector){
     ripple();
     splash(pageNumber * 100);
-    if(pageNumber < 3){
-      pageNumber += 1 * vector;
+    if(pageNumber === 0 && vector === -1){
+      pageNumber = 3;
+    }else if(pageNumber < 3){
+    pageNumber += 1 * vector;
     }else{
-      pageNumber = 0
+      if(vector === 1){
+        pageNumber = 0
+      }else{
+        pageNumber = 2
+      }
     }
     if(pageNumber == 2){
       if(once == 0){
@@ -177,7 +218,7 @@ $(function(){
     setTimeout(function(){
       $('#scrollButton').css('pointer-events','auto');
     },2000)
-    if($(window).width() < 700){
+    if($(window).width() < 800){
       $('.crossContainer').css('transform','rotateY(90deg)');
       $('.contentList').css('visibility','hidden').css('transform','rotate(150deg)').css('opacity','0');
       $('.contentList li').css('transform','rotate(-150deg)')
@@ -487,8 +528,8 @@ $(function(){
     function open(){
       $('.loadPageWhite').css('background-color','transparent');
       function openMove(){
-        $('.left').css('top',-screen.height).css('left',-screen.width);
-        $('.right').css('bottom',-screen.height).css('right',-screen.width);
+        $('.left').css('top',-screen.height).css('left',-screen.width).css('background-color','transparent');
+        $('.right').css('bottom',-screen.height).css('right',-screen.width).css('background-color','transparent');
         setTimeout(function(){$('.loadPage').css('display','none')},1000);
         $('#centerLine').css('opacity','0');
       }
@@ -555,24 +596,6 @@ $(function(){
   }
   hamburger();
 
-
-  let scrollControlNumber = 0;
-
-  function handle(event) {
-    event.preventDefault() ;
-    let scrollVector = event.deltaY;
-    if(scrollControlNumber == 0){
-      if(scrollVector > 1){
-        pageControlButton(1);
-        scrollControlNumber = 1;
-        setTimeout(function(){scrollControlNumber =0},2000);
-      }else if(scrollVector < -1){
-        pageControlButton(-1);
-        scrollControlNumber = 1;
-        setTimeout(function(){scrollControlNumber =0},2000);
-      }
-    }
-  }
 
 
   function background6(){
