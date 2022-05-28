@@ -9,6 +9,7 @@ $(function(){
     scrollControlNumber = 'possible';
   }, 7000);
 
+
   window.onload = function() {
     function handleTouchMove(event) {
       event.preventDefault();
@@ -16,39 +17,55 @@ $(function(){
     window.addEventListener('wheel', handleTouchMove, { passive: false });
     setTimeout(() => {
       window.removeEventListener('wheel', handleTouchMove, { passive: false });
+      window.onscroll = function(){
+        var scrollCounter = document.documentElement.scrollTop || document.body.scrollTop;
+        var posA = $(this).scrollTop();
+        setTimeout(() => {
+          let centerScroll = window.innerHeight * 1.2 / 12 / 2;
+          window.scrollTo(0,centerScroll);
+        }, 1);
+  
+  
+        if(scrollControlNumber == 'possible'){
+          if(posA < posB){
+            pageControlButton(-1);
+            scrollControlNumber = 'inpossible';
+            setTimeout(function(){scrollControlNumber = 'possible'},3000);
+          }else{
+            pageControlButton(1);
+            scrollControlNumber = 'inpossible';
+            setTimeout(function(){scrollControlNumber = 'possible'},3000);
+          }
+        }
+        
+  
+        posB = posA;
+        if(scrollCounter < 1){
+          window.scrollTo(0,2);
+        }
+  
+        if(scrollCounter > window.innerHeight * 1.2 / 12){
+          window.scrollTo(0,1);
+          window.addEventListener('wheel', handleTouchMove, { passive: false });
+          window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        }else if(scrollCounter < 1){
+          window.scrollTo(0,window.innerHeight * 1.2 / 12);
+          window.addEventListener('wheel', handleTouchMove, { passive: false });
+          window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        };
+        console.log(scrollCounter)
+        setTimeout(() => {
+          window.removeEventListener('wheel', handleTouchMove, { passive: false });
+          window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+        }, 3000);
+      }
     }, 7000);
     for(let i = 0;i < 4;i++){
       splash(i * 100)
     }
-  }
-
-
-  window.onscroll = function(){
-    var scrollCounter = document.documentElement.scrollTop || document.body.scrollTop;
-    var posA = $(this).scrollTop();
-
-
-    if(scrollControlNumber == 'possible'){
-      if(posA < posB){
-        pageControlButton(-1);
-        scrollControlNumber = 'inpossible';
-        setTimeout(function(){scrollControlNumber = 'possible'},3000);
-      }else{
-        pageControlButton(1);
-        scrollControlNumber = 'inpossible';
-        setTimeout(function(){scrollControlNumber = 'possible'},3000);
-      }
-    }
-
-    posB = posA;
-
-    if(scrollCounter == window.innerHeight * 9){
-      window.scrollTo(0,1);
-    }else if(scrollCounter == 0){
-      window.scrollTo(0,(window.innerHeight * 10) -1 );
-    };
 
   }
+
 
   //scroll&ripple
   $('#scrollButton').hover(
