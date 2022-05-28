@@ -25,9 +25,9 @@
     display: inline-block;
     z-index: -100;
     width:1px;
-    height:1000vh;
-    background-color:transparent;
+    height:120vh;
     left:0;
+    background-color: transparent;
 }
 
 
