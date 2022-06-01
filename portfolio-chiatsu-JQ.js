@@ -3,60 +3,58 @@ $(function(){
   var pageNumber = 0;
   let once = 0;
   var posB = $(window).scrollTop();
-  let scrollControlNumber = 'inpossible';
+  let scrollControlNumber = 'impossible';
 
   setTimeout(() => {
     scrollControlNumber = 'possible';
   }, 7000);
-
+  function handleTouchMove(event) {
+    event.preventDefault();
+  }
+  window.scrollTo(0,(window.innerHeight * 20) / 2);
 
   window.onload = function() {
-    function handleTouchMove(event) {
-      event.preventDefault();
-    }
     window.addEventListener('wheel', handleTouchMove, { passive: false });
     setTimeout(() => {
       window.removeEventListener('wheel', handleTouchMove, { passive: false });
       window.onscroll = function(){
+        window.addEventListener('wheel', handleTouchMove, { passive: false });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
         var scrollCounter = document.documentElement.scrollTop || document.body.scrollTop;
         var posA = $(this).scrollTop();
         setTimeout(() => {
-          let centerScroll = window.innerHeight * 1.2 / 12 / 2;
+          let centerScroll = (window.innerHeight * 20) / 2;
           window.scrollTo(0,centerScroll);
-        }, 1);
+        }, 2000);
   
   
         if(scrollControlNumber == 'possible'){
           if(posA < posB){
             pageControlButton(-1);
-            scrollControlNumber = 'inpossible';
+            scrollControlNumber = 'impossible';
             setTimeout(function(){scrollControlNumber = 'possible'},3000);
           }else{
             pageControlButton(1);
-            scrollControlNumber = 'inpossible';
+            scrollControlNumber = 'impossible';
             setTimeout(function(){scrollControlNumber = 'possible'},3000);
           }
         }
         
   
         posB = posA;
-        if(scrollCounter < 1){
-          window.scrollTo(0,2);
-        }
+
   
-        if(scrollCounter > window.innerHeight * 1.2 / 12){
+        if(scrollCounter > window.innerHeight * 18){
+          console.log('test')
           window.scrollTo(0,1);
-          window.addEventListener('wheel', handleTouchMove, { passive: false });
-          window.addEventListener('touchmove', handleTouchMove, { passive: false });
         }else if(scrollCounter < 1){
-          window.scrollTo(0,window.innerHeight * 1.2 / 12);
-          window.addEventListener('wheel', handleTouchMove, { passive: false });
-          window.addEventListener('touchmove', handleTouchMove, { passive: false });
+          window.scrollTo(0,window.innerHeight * 20);
+          console.log('pra')
         };
-        console.log(scrollCounter)
         setTimeout(() => {
           window.removeEventListener('wheel', handleTouchMove, { passive: false });
           window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+          $('.scrollScreen').css('postion','absolute');
         }, 3000);
       }
     }, 7000);
