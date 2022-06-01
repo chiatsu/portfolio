@@ -15,8 +15,10 @@ $(function(){
 
   window.onload = function() {
     window.addEventListener('wheel', handleTouchMove, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
     setTimeout(() => {
       window.removeEventListener('wheel', handleTouchMove, { passive: false });
+      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
       window.onscroll = function(){
         window.addEventListener('wheel', handleTouchMove, { passive: false });
         window.addEventListener('touchmove', handleTouchMove, { passive: false });
