@@ -4,12 +4,7 @@ $(function(){
   let once = 0;
   var posB = $(window).scrollTop();
   let scrollControlNumber = 'impossible';
-  const agent = window.navigator.userAgent.toLowerCase()
-    if(agent.indexOf("chrome") != -1){
-      ;
-    }else if(agent.indexOf("safari") != -1){
-      $('.scrollScreen').css('width','0px');
-    }
+
 
   setTimeout(() => {
     scrollControlNumber = 'possible';
