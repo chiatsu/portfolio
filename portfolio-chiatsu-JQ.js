@@ -48,11 +48,9 @@ $(function(){
 
   
         if(scrollCounter > window.innerHeight * 18){
-          console.log('test')
           window.scrollTo(0,1);
         }else if(scrollCounter < 1){
           window.scrollTo(0,window.innerHeight * 20);
-          console.log('pra')
         };
         setTimeout(() => {
           window.removeEventListener('wheel', handleTouchMove, { passive: false });
