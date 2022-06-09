@@ -9,7 +9,7 @@
     scrollbar-width: none; 
 }
 
-*::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+*::-webkit-scrollbar {
     display:none;
   }
 
