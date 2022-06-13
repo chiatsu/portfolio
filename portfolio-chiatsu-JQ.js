@@ -392,24 +392,26 @@ $(function(){
   }
 
   arrowMove();
-
   function atelierRotate(){
     for(let i = 2;i < 7;i++){
       $('.work:nth-child(' + i + ') img').css('opacity','0.6');
     }
     let atelierRotateDeg = 90;
     let atelierWorkNumber = 1;
+    $('.atelierClickPart' + atelierWorkNumber).css('pointer-events','auto');
     $('.work:nth-child(' + atelierWorkNumber + ') img').css('transform','scale(1.4) rotateZ(20deg)');
     $('.prevContent3Button').click(
       function(){
         atelierRotateDeg = atelierRotateDeg + 60;
         $('.atelier').css('transform','rotateZ(' + atelierRotateDeg + 'deg)');
         $('.work:nth-child(' + atelierWorkNumber + ') img').css('opacity','0.6').css('transform','scale(1) rotateZ(0deg)');
+        $('.atelierClickPart' + atelierWorkNumber).css('pointer-events','none');
         if(atelierWorkNumber == 1){
           atelierWorkNumber = 7;
         };
         atelierWorkNumber = atelierWorkNumber - 1;
         $('.work:nth-child(' + atelierWorkNumber + ') img').css('opacity','0.9').css('transform','scale(1.4) rotateZ(20deg)');
+        $('.atelierClickPart' + atelierWorkNumber).css('pointer-events','auto');
         atelier();
       }
     )
@@ -418,11 +420,13 @@ $(function(){
         atelierRotateDeg = atelierRotateDeg - 60;
         $('.atelier').css('transform','rotateZ(' + atelierRotateDeg + 'deg)');
         $('.work:nth-child(' + atelierWorkNumber + ') img').css('opacity','0.6').css('transform','scale(1) rotateZ(0deg)');
+        $('.atelierClickPart' + atelierWorkNumber).css('pointer-events','none');
         if(atelierWorkNumber == 6){
           atelierWorkNumber = 0;
         };
         atelierWorkNumber = atelierWorkNumber + 1;
         $('.work:nth-child(' + atelierWorkNumber + ') img').css('opacity','0.9').css('transform','scale(1.4) rotateZ(20deg)');
+        $('.atelierClickPart' + atelierWorkNumber).css('pointer-events','auto');
         atelier();
       }
     )
