@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="block">
+            <canvas class="circle" id="circle1"></canvas>
+            <canvas class="circle" id="circle2"></canvas>
+            <canvas class="circle" id="circle3"></canvas>
+        </div>
+    </body>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            width:100vw;
+            height:100vh;
+        }
+
+        .block{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        }
+
+        .circle{
+            transform:scale(1);
+        }
+
+
+    </style>
+    <script>
+        (function() {
+            var requestAnimationFrame = window.requestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.msRequestAnimationFrame;
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+        $('.circle').css('width',innerWidth / 3.1).css('height',innerWidth / 3.1);
+
+
+
+        var background3 = function(circle,oneSizeJudge,gap){
+            var rotateCircles = function(circle){
+                var canvas3 = document.getElementById(circle);
+                var ctx = canvas3.getContext('2d');
+            
+                canvas3.width = innerHeight;
+                canvas3.height = innerHeight;
+            
+                var density = 15;
+                var colors = ['lime','cyan','cyan'];
+                var centerx = canvas3.width / 2;
+                var centery = canvas3.height / 2;
+                var circles = [];
+            
+                var circle = function(){
+                    this.color = colors[~~(Math.random() * 3)];
+                    this.speed = Math.random() /10;//この値をangleに足していきその度に描画、それによって回転しているように見える。
+                    this.angle = 0;//回転数を保存している
+                    this.size = Math.random() * 70;
+                };
+            
+                var init = function(){
+                    for (var i = 0;i < density;i++){
+                        circles.push(new circle);
+                    };
+                };
+                init();
+            
+                
+                var rotateCircle = function(){
+                    requestAnimationFrame(rotateCircle);
+            
+                    ctx.clearRect(0,0,canvas3.width,canvas3.height);
+                    for(var i = 0;density > i;i++){
+                    
+                    circles[i].angle += circles[i].speed;//それぞれのcircleの回転スピード（this.speed）をrequestanimationframeの周期でangleに足していきそれをrequestanimationframeの周期で描画している
+            
+                    circles[i].posx = Math.cos(circles[i].angle) * gap + centerx;
+                    circles[i].posy = Math.sin(circles[i].angle) * gap + centery;
+                    if(oneSizeJudge == 'same'){
+                        oneSize = 0;
+                    }else{
+                        oneSize = circles[i].size;
+                    }
+
+                
+                    ctx.beginPath();
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = circles[i].color;
+                    ctx.arc(circles[i].posx,circles[i].posy,200 + oneSize,0,Math.PI * 2,false);  // 上下左右の中心点からの最大のズレの値は70まで、それ以上は見切れる
+                    ctx.stroke();
+                    
+
+            
+                    };
+                };
+                rotateCircle();
+        
+            
+        
+        
+            
+        
+            
+            };
+            rotateCircles(circle);
+        
+        };
+        function all(){
+            background3('circle1','insame',80);
+            background3('circle2','same',70);
+            background3('circle3','same',20);
+        }
+        all();
+
+    </script>
+</html>

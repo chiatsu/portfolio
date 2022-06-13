@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="particleContainer">
+            <canvas id="particle"></canvas>
+        </div>
+    </body>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            background-color: black;
+        }
+    </style>
+    <script>
+var background1 = function(){
+  
+
+  var canvas = document.getElementById('particle');
+  var ctx = canvas.getContext('2d');
+
+
+
+  canvas.width = screen.width;
+  canvas.height = screen.height;
+
+
+
+
+
+
+  var baseSpeed = 6;
+  var density = 100;
+  var colors = ['springgreen','cyan','lime'];
+  var baseSize = 4;
+  var sizePlus = 0.05;
+  var particles = [];
+
+
+
+  var particle = function(){
+      this.size = (Math.random() + 0.5) * baseSize;
+      this.sizeChange = this.size;
+      this.color = colors[~~(Math.random() * 3)];
+      this.speed = baseSpeed * ((Math.random() * 5 ) + 5) / 10;
+      this.randomPos = Math.random();
+      this.posx = canvas.width * (1 - this.randomPos);
+      this.posy = canvas.height * this.randomPos;
+      this.vec = (Math.random() * 10 - 8) / 10;
+      this.vecx = (-canvas.width * 0.001 + this.vec) * this.speed;
+      this.vecy = (canvas.height * 0.001) * this.speed;
+      this.alpha = 0.1;
+  };
+
+
+  var init = function(){
+      for (var i = 0;i < density;i++){
+          particles.push(new particle);
+      };
+
+
+      
+      var update = function(){
+          window.requestAnimationFrame(update);
+
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+          for (var i = 0;i < density;i++){
+            particles[i].posx += particles[i].vecx;
+            particles[i].posy += particles[i].vecy;
+            particles[i].sizeChange += sizePlus;
+            particles[i].alpha += 0.005;
+
+            if(particles[i].alpha > 0.999){
+              particles[i].alpha = 1;
+            };
+
+
+            if(particles[i].posx > canvas.width + 10) {
+                particles[i].posx = canvas.width + 5;
+                particles[i].posy = -5;
+                particles[i].sizeChange = particles[i].size;
+                particles[i].alpha = 0.1;
+              } else if(particles[i].posx < 0 - 10) {
+                particles[i].posx = canvas.width + 5;
+                particles[i].posy = -5;
+                particles[i].sizeChange = particles[i].size;
+                particles[i].alpha = 0.1;
+              } else if(particles[i].posy > canvas.height + 10) {
+                particles[i].posx = canvas.width + 5;
+                particles[i].posy = -5;
+                particles[i].sizeChange = particles[i].size;
+                particles[i].alpha = 0.1;
+              } else if(particles[i].posy < 0 - 10) {
+                particles[i].posx = canvas.width + 5;
+                particles[i].posy = -5;
+                particles[i].sizeChange = particles[i].size;
+                particles[i].alpha = 0.1;
+              };
+
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = particles[i].color;
+            ctx.fillStyle = particles[i].color;
+            ctx.arc(particles[i].posx, particles[i].posy, particles[i].sizeChange, 0, Math.PI * 2.0, true);
+            ctx.globalAlpha = particles[i].alpha;
+            ctx.stroke();
+            
+
+
+          };
+          
+
+
+
+
+      };
+      update();
+
+  };
+
+  init();
+
+};
+background1();
+
+
+
+    </script>
+</html>

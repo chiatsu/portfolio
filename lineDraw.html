@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <canvas id="lineDrow"></canvas>
+    </body>
+    <script>
+        function background6(){
+            let canvas = document.getElementById('lineDrow');
+            let ctx = canvas.getContext('2d');
+            canvas.width = screen.width * 2;
+            canvas.height = screen.height * 2;
+            let density = 5;
+            let lines = [];
+            let colors = ['springgreen','cyan','lime'];
+        
+            let lineControl = function(){
+            this.posxInit = Math.random() * canvas.width;
+            this.posyInit = Math.random() * canvas.height;
+            this.posx = Math.random() * canvas.width;
+            this.posy = Math.random() * canvas.height;
+            this.color = colors[~~(Math.random() * 3)];
+            }
+        
+            for(let i = 0;i < density;i++){
+            lines.push(new lineControl);
+            }
+
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+        
+            function lineDraw(){
+            for(let i = 0;i < density;i++){
+                ctx.beginPath();
+                ctx.globalAlpha = 0.3;
+                ctx.strokeStyle = lines[i].color;
+                ctx.lineWidth = 1;
+                lines[i].posxInit = Math.random() * canvas.width;
+                lines[i].posyInit = Math.random() * canvas.height;
+                lines[i].posx = Math.random() * canvas.width;
+                lines[i].posy = Math.random() * canvas.height;
+                ctx.moveTo(lines[i].posxInit,lines[i].posyInit);
+                ctx.lineTo(lines[i].posx,lines[i].posy);
+                ctx.stroke();
+            }
+            }
+            let cnt = 0;
+            let timerId = setInterval(function(){
+            cnt++
+            lineDraw();
+            if(cnt===1000){
+                clearInterval(timerId);  
+                once = 1;
+            }
+            }, 1);
+        }
+        background6();
+    </script>
+    <style>
+        body{
+            background-color: black;
+        }
+
+        canvas{
+            width:100vw;
+            height:100vh;
+        }
+    </style>
+</html>

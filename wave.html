@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="wavesContainer">
+            <div class="waves">
+                <canvas id="wave1" class="wave"></canvas>
+                <canvas id='wave2' class="wave"></canvas>
+                <canvas id='wave3' class="wave"></canvas>
+                <canvas id="wave4" class="wave"></canvas>
+                <canvas id='wave5' class="wave"></canvas>
+                <canvas id='wave6' class="wave"></canvas>
+            </div>
+        </div>
+    </body>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+
+        .wavesContainer{
+            position: fixed;
+            width:100vw;
+            height:100vh;
+            justify-content:center;
+            align-items:center;
+            display: flex;
+            background-color: black;
+        }
+
+        .waves{
+            width:80%;
+            height:100%;
+            justify-content:center;
+            align-items:center;
+            display: flex;
+        }
+
+        .wave{
+            position: absolute;
+        }
+
+        #wave1{
+            transform:rotate(-20deg);
+            width:200vw;
+        }
+
+        #wave2{
+            transform:rotate(-10deg);
+            width:200vw;
+        }
+
+        #wave3{
+            transform:rotate(-30deg);
+            width:200vw;
+        }
+
+        #wave4{
+            transform:rotate(20deg);
+            width:200vw;
+        }
+
+        #wave5{
+            transform:rotate(10deg);
+            width:200vw;
+        }
+
+        #wave6{
+            transform:rotate(30deg);
+            width:200vw;
+        }
+
+    </style>
+    <script>
+        var background2 = function(){
+            var wave1 = 'wave1';
+            var wave2 = 'wave2';
+            var wave3 = 'wave3';
+            var wave4 = 'wave4';
+            var wave5 = 'wave5';
+            var wave6 = 'wave6';
+            function wavesAnimation(wave,timing){
+
+                var degree = 0;
+                var colors = ['deepskyblue','dodgerblue','springgreen','lime','cyan','deepskyblue','dodgerblue','springgreen','lime','cyan'];
+
+                    
+                var canvas2 = document.getElementById(wave);
+                var ctx = canvas2.getContext('2d');
+                canvas2.width =screen.width * 4.5;
+                canvas2.height = 800;
+
+
+                function draw(){
+                    window.requestAnimationFrame(draw);
+                    ctx.clearRect(0,0,canvas2.width,canvas2.height);
+
+                    //drawWave(colors[0],speed,time(上下するのにかかる時間、横の幅),swing(上下の幅))
+
+                    drawWave(colors[0],10 + timing,600,180)
+                    drawWave(colors[1],9 + timing,500,150)
+                    drawWave(colors[2],8 + timing,400,120)
+                    drawWave(colors[3],7 + timing,300,90)
+                    drawWave(colors[4],6 + timing,200,60)
+                    drawWave(colors[5],5 + timing,650,180)
+                    drawWave(colors[6],4 + timing,550,150)
+                    drawWave(colors[7],3 + timing,450,120)
+                    drawWave(colors[8],2 + timing,350,90)
+                    drawWave(colors[9],1 + timing,250,60)
+                    
+
+                    }
+                draw();
+
+                function drawWave(color,speed,time,swing){
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    drawSine(degree,speed,time,swing);
+                    ctx.stroke();
+
+                    degree += 1;
+                }
+
+                function drawSine(degree,speed,time,swing) {
+                    ctx.moveTo(0, canvas2.height/2); //始点
+                    for (var x=1; x <= canvas2.width; x+= 1) {
+                        var y = Math.sin(degree / (speed * 100) + x/time) * swing;       //var y = Math.sin(degree / speed + x/上下往復の時間、波の横の幅) * 上下の幅;
+                        ctx.lineTo(x, y+(canvas2.height/2));
+                    };
+                };
+
+            };
+            wavesAnimation(wave1,0);
+            wavesAnimation(wave2,0.5);
+            wavesAnimation(wave3,1);
+            wavesAnimation(wave4,0);
+            wavesAnimation(wave5,0.5);
+            wavesAnimation(wave6,1);
+
+
+        };
+        background2();
+
+
+    </script>
+</html>

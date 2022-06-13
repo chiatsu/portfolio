@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <canvas id="flowText1"></canvas>
+        <canvas id="flowText2"></canvas>
+    </body>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            background-color: black;
+        }
+
+        #flowText{
+            font-weight: bolder;
+        }
+    </style>
+    <script>
+var background4 = function(num,vec){
+  var flowText = function(){
+    var canvas = document.getElementById('flowText' + num);
+    var ctx = canvas.getContext('2d');
+
+    canvas.width = screen.width;
+    canvas.height = innerHeight / 2;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = 'black';
+    ctx.lineWidth = 6;
+    ctx.font = "normal bolder 200px 'MSゴシック'";
+    var textWidth = ctx.measureText('CHIATSU IKEDA ');
+
+
+    var texts = [];
+
+
+    var text = function(pos){
+      this.posx = pos;
+      this.speed = 2;
+    };
+
+    var init = function(){
+      for (var i = 0;i < 3;i++){
+        var pos = i * textWidth.width;
+        texts.push(new text(pos));
+      };
+    };
+    init();
+
+    var update = function(){
+      requestAnimationFrame(update);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      for(var i = 0;i < 3;i++){
+        texts[i].posx += texts[i].speed * vec;
+      
+
+        if(texts[i].posx <  0 - textWidth.width){
+          texts[i].posx = textWidth.width * 2; 
+        }else if(texts[i].posx > textWidth.width * 2){
+            texts[i].posx = -textWidth.width; 
+        }
+
+
+        ctx.beginPath();
+        ctx.fillStyle = 'white';
+        ctx.lineWidth = 6;
+        ctx.font = "normal bolder 200px 'MSゴシック'";
+        ctx.textAlign = 'left';
+        ctx.textBaseLine = 'middle';
+        var y = canvas.height / 2;
+        ctx.fillText('CHIATSU IKEDA ',texts[i].posx,y + 100)
+      };
+
+
+
+
+
+    };
+    update();
+  };
+  flowText();
+};
+background4('1',-1);
+background4('2',1)
+
+
+
+    </script>
+</html>

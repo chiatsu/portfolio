@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>portfolio-chiatsu</title>
+            <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="particleContainer">
+            <canvas id="particle"></canvas>
+        </div>
+    </body>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            background-color: black;
+        }
+    </style>
+    <script>
+var background1 = function(){
+  
+
+  var canvas = document.getElementById('particle');
+  var ctx = canvas.getContext('2d');
+
+
+
+  canvas.width = screen.width;
+  canvas.height = screen.height;
+
+
+
+
+
+
+  var baseSpeed = 1;
+  var density = 100;
+  var colors = ['springgreen','cyan','lime'];
+  var baseSize = 4;
+  var sizePlus = 0.05;
+  var particles = [];
+
+
+
+  var particle = function(){
+      this.size = (Math.random() * 5) * baseSize;
+      this.sizeChange = this.size;
+      this.color = colors[~~(Math.random() * 3)];
+      this.speed = baseSpeed * ((Math.random() * 5 ) + 5) / 10;
+      this.randomPos = Math.random();
+      this.posx = canvas.width * Math.random();
+      this.posy = canvas.height * Math.random();
+      this.vecx = ((Math.random() * 20) - 10) / 10 * this.speed;
+      this.vecy = ((Math.random() * 20) - 10) / 10 * this.speed;
+  };
+
+
+  var init = function(){
+      for (var i = 0;i < density;i++){
+          particles.push(new particle);
+      };
+
+
+      
+      var update = function(){
+          window.requestAnimationFrame(update);
+
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+          for (var i = 0;i < density;i++){
+            particles[i].posx += particles[i].vecx;
+            particles[i].posy += particles[i].vecy;
+
+
+
+            if(particles[i].posx > canvas.width + 10) {
+                particles[i].posx = -5;
+              } else if(particles[i].posx < 0 - 10) {
+                particles[i].posx = canvas.width + 5;
+              } else if(particles[i].posy > canvas.height + 10) {
+                particles[i].posy = -5;
+              } else if(particles[i].posy < 0 - 10) {
+                particles[i].posy = canvas.height + 5;
+              };
+
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = particles[i].color;
+            ctx.fillStyle = particles[i].color;
+            ctx.arc(particles[i].posx, particles[i].posy,particles[i].size, 0, Math.PI * 2.0, true);
+            ctx.stroke();
+            ctx.fill();
+            
+
+
+          };
+          
+
+
+
+
+      };
+      update();
+
+  };
+
+  init();
+
+};
+background1();
+
+
+
+    </script>
+</html>
